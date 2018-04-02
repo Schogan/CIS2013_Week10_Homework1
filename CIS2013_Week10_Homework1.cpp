@@ -8,7 +8,10 @@ int main (){
 	
 	int boardx = 1;
 	int boardy = 1;
+	int X;
+	int Y;
 	
+	bool playing = true;
 	
 	int *BX;
 	BX= new int [boardx];
@@ -17,6 +20,7 @@ int main (){
 	int *BY;
 	BY= new int [boardy];
 	
+	char cord = 'a';
 	char board [10][10];
 	
 	int mines = 1;
@@ -73,30 +77,54 @@ int main (){
 	
 	
 	//prints blank board
-	ifstream displayB;
-	displayB.open("displayboard.txt");
-	if(displayB.fail()){
-		cout << "Unable to open file displayboard.txt" << endl;
-		exit(1);
-	}
-	for(int i=0; i < boardx; i++){
-		
-		for(int j=0; j < boardy; j++){
-			displayB >> board[i][j];
+	while(playing){
+		ifstream displayB;
+		displayB.open("displayboard.txt");
+		if(displayB.fail()){
+			cout << "Unable to open file displayboard.txt" << endl;
+			exit(1);
+		}
+		for(int i=0; i < boardx; i++){
+			
+			for(int j=0; j < boardy; j++){
+				displayB >> board[i][j];
+			}
+			
+		}
+		//display board
+		for(int i=0; i < boardx; i++){
+			
+			for(int j=0; j < boardy; j++){
+				cout << board[i][j] << " ";
+			}
+			cout << endl;
 		}
 		
-	}
-	//display board
-	for(int i=0; i < boardx; i++){
-		
-		for(int j=0; j < boardy; j++){
-			cout << board[i][j] << " ";
-		}
-		cout << endl;
-	}
-	
 	//asks for cords to check
-	//cout << "Please enter the coordinates you would like to check (X/Y): " << endl;
+	
+		cout << "Please enter the coordinates you would like to check: " << endl;
+		cout << "Enter X: ";
+		cin >> X;
+		cout << "Enter Y: ";
+		cin >> Y;
+		
+		
+		ifstream gameB;
+		gameB.open("gameboard.txt");
+		if(gameB.fail()){
+			cout << "Unable to open file gameboard.txt" << endl;
+			exit(1);
+		}
+		if (gameB.is_open()){
+			cord = board[X][Y];
+			if (cord == '.'){
+				//cout << "TEST";
+				display << ' ';
+			}
+			
+			//cout << cord;
+		}
+	}
 	//updates board
 	
 }
