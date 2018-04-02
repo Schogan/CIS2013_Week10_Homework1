@@ -43,18 +43,50 @@ int main (){
 	
 	
 	for(int i=0; i < boardx; i++){
-		cout << endl;
+		
 		for(int j=0; j < boardy; j++){
 			
-			cin >> board[a][b];
+			game << '.';
 			
 		}
+		game << endl;
+	}
+	
+	ofstream display;
+	display.open("displayboard.txt");
+	if(display.fail()){
+		cout << "Unable to open file displayboard.txt" << endl;
+		exit(1);
+	}
+	for(int i=0; i < boardx; i++){
 		
+		for(int j=0; j < boardy; j++){
+			
+			display << '.';
+			
+		}
+		display << endl;
 	}
 	
 	
 	
-	//test board
+	
+	
+	//prints blank board
+	ifstream displayB;
+	displayB.open("displayboard.txt");
+	if(displayB.fail()){
+		cout << "Unable to open file displayboard.txt" << endl;
+		exit(1);
+	}
+	for(int i=0; i < boardx; i++){
+		
+		for(int j=0; j < boardy; j++){
+			displayB >> board[i][j];
+		}
+		
+	}
+	//display board
 	for(int i=0; i < boardx; i++){
 		
 		for(int j=0; j < boardy; j++){
@@ -62,15 +94,6 @@ int main (){
 		}
 		cout << endl;
 	}
-	
-	//prints blank board
-	/*for(int i=0; i < boardx; i++){
-		
-		for(int j=0; j < boardy; j++){
-			cout << board[i][j] << " ";
-		}
-		cout << endl;
-	}*/
 	
 	//asks for cords to check
 	//cout << "Please enter the coordinates you would like to check (X/Y): " << endl;
