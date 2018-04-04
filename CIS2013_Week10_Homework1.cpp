@@ -3,7 +3,8 @@
 #include <cstring>
 
 using namespace std;
-
+void displayBoardFunc(int CX, int CY);
+char newdisplay = ' ';
 int main (){
 	
 	int boardx = 1;
@@ -56,22 +57,9 @@ int main (){
 		game << endl;
 	}
 	
-	ofstream display;
-	display.open("displayboard.txt");
-	if(display.fail()){
-		cout << "Unable to open file displayboard.txt" << endl;
-		exit(1);
-	}
-	for(int i=0; i < boardx; i++){
-		
-		for(int j=0; j < boardy; j++){
-			
-			display << '.';
-			
-		}
-		display << endl;
-	}
 	
+	//newdisplay = '.';	
+	displayBoardFunc(boardx,boardy);
 	
 	
 	
@@ -99,7 +87,7 @@ int main (){
 			}
 			cout << endl;
 		}
-		
+		//displayB.close();
 	//asks for cords to check
 	
 		cout << "Please enter the coordinates you would like to check: " << endl;
@@ -117,9 +105,16 @@ int main (){
 		}
 		if (gameB.is_open()){
 			cord = board[X][Y];
+			//cout << cord;
 			if (cord == '.'){
-				//cout << "TEST";
-				display << ' ';
+				//displayBoardFunc(X,Y);
+				ofstream displayB;
+				displayB.open("displayboard.txt");
+				if(displayB.fail()){
+				cout << "Unable to open file displayboard.txt" << endl;
+				exit(1);
+				}
+				displayB << 'b';
 			}
 			
 			//cout << cord;
@@ -127,4 +122,24 @@ int main (){
 	}
 	//updates board
 	
+}
+
+void displayBoardFunc(int CX, int CY){
+	
+	ofstream display;
+		display.open("displayboard.txt");
+		if(display.fail()){
+			cout << "Unable to open file displayboard.txt" << endl;
+			exit(1);
+		}
+		for(int i=0; i < CX; i++){
+			
+			for(int j=0; j < CY; j++){
+				
+				display << '.';
+				
+			}
+			display << endl;
+		}
+		
 }
